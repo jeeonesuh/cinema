@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRAIN PRIVATE CINEMA REGISTRATION</title>    
+    <script defer src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.5.0/firebase-installations-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-functions-compat.js"></script>
+    <script defer src="./js/firebase-config.js"></script>
+    <link rel="stylesheet" href="./css/stlye.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="info-header">
+        <img src="./img/header.png">
+      </div>
+      <div id="infoKor" class="info">
+        <h1 class="font-bold">PRIVATE CINEMA REGISTRATION</h1>
+        <div>
+          <ul class="announcement">
+            <li>참가 신청에 필요한 최소한의 개인정보를 입력하면 참석 응모가 가능합니다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="privacy">
+        <h3 class="font-bold">개인 정보 수집·이용 약관 동의</h3>
+        <div class="privacy-content">
+          <p class="privacy-kor-content">
+            <span class="font-blue">개인정보 수집∙이용 내역</span><br>
+            <span style="color: white;">PRIAN GLOBAL PRIVATE CINEMA 운영사는 PRAIN GLOBAL으로,<br>PRIAN GLOBAL PRIVATE CINEMA의 원활한 행사 운영을 위해서<br>참가 응모 및 당첨자 초청에 필요한 최소한의 개인정보를 필수항목으로 수집∙이용하고자 합니다.<br><br></span>
+
+            <span class="font-blue">수집하는 개인정보의 항목</span><br>
+            <span style="color: white;">- 개인정보 수집항목 : 이름, 전화번호, 이메일, 소속(회사/기관), 직위<br>
+            - 개인정보 수집방법 : PRAIN GLOBAL PRIVATE CINEMA 사전 응모 페이지<br><br></span>
+
+            <span class="font-blue">개인정보의 수집 및 이용목적</span><br>
+            <span style="color: white;">PRAIN GLOBAL은 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br><br>
+
+            1. 참가자 관리<br>
+            사전 응모자를 대상으로 추첨을 진행하여 초청자 선정<br><br>
+
+            2. 행사 진행 시 초청자 본인 확인<br>
+            초청자 선정 후 현장에 도착하는 초청자의 본인 확인 및 입장 안내<br><br><br></span>
+        
+            <span class="font-blue">개인정보 보유 및 이용기간</span><br>
+            <span style="color: white;">
+            개인정보의 보유 및 이용기간 이용자의 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다. 단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.<br><br>
+
+            1. 이후 행사 개최 시 안내<br>
+            - 이후 PRIAN GLOBAL PRIVATE CINEMA 초청장 발송<br>
+            보존 이유 : 초청장 발송<br>
+            보존 기간 : 2년<br><br>
+
+            2. 관련법령에 의한 정보보유 사유<br>
+            관계법령의 규정에 의하여 보존할 필요가 있는 경우 PRAIN GLOBAL은 관계법령에서 정한 일정한 기간 동안 참가자 정보를 보관합니다. 이 경우 북한인권 현인그룹회의 조직위는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다.<Br><br>
+
+            - 방문에 관한 기록<br>
+            보존 이유 : 통신비밀보호법<br>
+            보존 기간 : 3개월<br><br>
+
+            - 본인확인에 관한 기록<br>
+            보존 이유 : 정보통신망 이용촉진 및 정보보호 등에 관한 법률<Br>
+            보존 기간 : 6개월<br><br>
+
+            ※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 참가 응모 진행이 어려운 점 양지하여 주시기 바랍니다.<br></span>
+          </p>
+        </div>
+        <div class="align-right">
+          <input type="checkbox" id="privacy-checkbox">
+          <label for="privacy-checkbox" style="color: white">개인 정보 수집·이용 약관에 동의합니다.</label>
+        </div>
+      </div>
+      <h3 class="font-bold">응모 정보 입력</h3>
+      <form id="registration-form" onsubmit="checkEmptyFields(); return false;">
+        <div class="entry-reg-form" style="text-align: center;">
+          <div class="form-group">
+            <div class="form-wrap">
+              <label for="first-name">이름</label>
+              <input type="text" id="name" required>
+            </div>
+            <div class="form-wrap">
+              <label for="phone-number">전화번호</label>
+              <input type="tel" id="phone-number" required pattern="[0-9-]+">
+              <span class="alert-message"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-wrap">
+              <label for="email">이메일</label>
+              <input type="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+              <span class="alert-message"></span><br class="for-mobile">
+            </div>
+            <div class="form-wrap">
+              <label for="organization">소속</label>
+              <input type="text" id="organization" required><br class="for-mobile" >
+          </div>
+          <div class="submit-wrap align-center">
+            <button type="submit" id="submit-btn-end" disabled>참가자 등록 하기<br>Submit</button><br>
+            <span class="submit-alert-message"></span>  
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="./js/script_v2.js"></script>
+  </body>
+</html>
